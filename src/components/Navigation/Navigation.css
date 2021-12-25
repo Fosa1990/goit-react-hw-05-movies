@@ -1,13 +1,11 @@
-.link {
+.nav-link {
   display: inline-block;
   text-decoration: none;
   padding: 12px;
   font-weight: 500;
-  color: #2a363b;
+  color: var(--dark-blue);
   font-size: 18px;
 }
-
-.active-link {
-  composes: link;
-  color: #2196f3;
+.nav-link-active {
+  color: var(--light-blue);
 }

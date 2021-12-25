@@ -1,0 +1,47 @@
+.cast {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+.cast .actor {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: var(--card-full-box-shadow);
+}
+.cast .actor:nth-of-type(2n) {
+  background-color: var(--casts-background);
+}
+.actor .image-container {
+  height: auto;
+  object-fit: cover;
+}
+.actor .actor-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+.actor h3 {
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 3px;
+}
+.actor span {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 3px;
+}
+.cast .no-info {
+  margin: 20px auto;
+  color: var(--red);
+}

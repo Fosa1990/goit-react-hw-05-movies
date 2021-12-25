@@ -1,5 +1,33 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
+:root {
+  --font: 'Lato', sans-serif;
+  --big: 'Montserrat', sans-serif;
+  --red: #ef2f3c;
+  --white: #f6f4f3;
+  --light-blue: #276fbf;
+  --dark-blue: #183059;
+  --light-purple: #3f51b5;
+  --dark-purple: #303f9f;
+  --yellow: #f0a202;
+  --green: #27991a;
+  --light: #dae8f8;
+  --backdrop: rgba(0, 0, 0, 0.8);
+  --casts-background: rgba(206, 204, 204, 0.63);
+  --card-full-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}
+html {
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,8 +36,43 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.Button {
+  display: inline-block;
+  margin: 10px;
+  padding: 8px 8px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--white);
+  background-color: var(--light-purple);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--big);
+  font-size: 20px;
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 500;
+  min-width: 180px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: all 250ms var(--cubic);
+}
+.Button:hover,
+.Button:focus {
+  background-color: var(--dark-purple);
+  transform: scale(1.2);
+}
+.Button:focus,
+.Button:active {
+  outline: none;
+  transform: scale(1.1);
 }

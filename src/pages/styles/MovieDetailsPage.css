@@ -1,0 +1,11 @@
+.movie-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 500;
+  color: var(--dark-blue);
+  font-size: 18px;
+}
+.movie-link-active {
+  color: var(--light-blue);
+}
