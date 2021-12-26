@@ -4,12 +4,12 @@ import SearchForm from '../components/SearchForm';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT } from '../helpers/constants';
 export default function MoviesPage() {
-  const { url } = useRouteMatch();
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
-  const isFirstRender = useRef(true);
   const [totalPages, setTotalPages] = useState(0);
+  const { url } = useRouteMatch();
+  const isFirstRender = useRef(true);
   console.log('MoviesPage__url: ', url);
   useEffect(() => {
     if (isFirstRender.current) {

@@ -10,10 +10,10 @@ export default function App() {
     <Container>
       <Appbar />
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path={`/${MOVIES}`} exact>
+        <Route exact path={`/${MOVIES}`}>
           <MoviesPage />
         </Route>
         <Route path={`/${MOVIES}/:movieId`}>
