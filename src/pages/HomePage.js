@@ -1,15 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { useRouteMatch } from 'react-router-dom';
 import * as API from '../services/moviesApi';
 import MoviesList from '../components/MoviesList';
 import { PREV, NEXT } from '../helpers/constants';
 export default function HomePage() {
-  const { url } = useRouteMatch();
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const isFirstRender = useRef(true);
-  console.log('HomePage__url', url);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;

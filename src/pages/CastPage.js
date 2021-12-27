@@ -12,6 +12,5 @@ export default function CastPage() {
     });
     return () => setCast([]);
   }, [movieId]);
-  console.log('Cast__cast:', cast);
   return <Cast cast={cast} />;
 }

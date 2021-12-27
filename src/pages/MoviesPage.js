@@ -20,7 +20,6 @@ export default function MoviesPage() {
   const [totalPages, setTotalPages] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const isFirstRender = useRef(true);
-  console.log(movies);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
