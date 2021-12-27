@@ -2,7 +2,6 @@ import { PropTypes } from 'prop-types';
 import { BASE_SRC } from '../../helpers/constants';
 import imageNotFound from '../../images/No-Image-Placeholder.svg';
 import './MovieItem.css';
-
 export default function MovieItem({ movie }) {
   const { poster_path, title, vote_average, overview, genres } = movie;
   const date = getMovieDate(movie);

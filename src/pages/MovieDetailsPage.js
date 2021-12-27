@@ -36,7 +36,7 @@ export default function MovieDetailsPage() {
       const { pathname, search } = refLocation.current.state.from;
       history.push(search ? pathname + search : pathname);
     } else {
-      const path = refLocation.current.pathname.includes('movies')
+      const path = refLocation.current.pathname.includes(MOVIES)
         ? `/${MOVIES}`
         : '/';
       history.push(path);

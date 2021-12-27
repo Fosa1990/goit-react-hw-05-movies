@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
-
 export default function ReviewItem({ review }) {
   const [showMore, setShowMore] = useState(true);
   const getContent = content => {
@@ -8,17 +8,14 @@ export default function ReviewItem({ review }) {
   const toggleShowMore = () => {
     setShowMore(state => !state);
   };
+  const { id, author, content } = review;
   return (
-    <div key={review.id}>
-      <h3 className="author">Author: {review.author}</h3>
-      <p className={`content content-${review.id}`}>
-        {showMore ? getContent(review.content) : review.content}
-        {review.content.length > 600 && (
-          <span
-            className="show-more"
-            data-id={review.id}
-            onClick={toggleShowMore}
-          >
+    <div key={id}>
+      <h3 className="author">Author: {author}</h3>
+      <p className={`content content-${id}`}>
+        {showMore ? getContent(content) : content}
+        {content.length > 600 && (
+          <span className="show-more" data-id={id} onClick={toggleShowMore}>
             {showMore ? ' show more' : ' show less'}
           </span>
         )}
@@ -26,3 +23,10 @@ export default function ReviewItem({ review }) {
     </div>
   );
 }
+ReviewItem.propTypes = {
+  review: PropTypes.shape({
+    author: PropTypes.string,
+    content: PropTypes.string,
+    id: PropTypes.string.isRequired,
+  }),
+};
