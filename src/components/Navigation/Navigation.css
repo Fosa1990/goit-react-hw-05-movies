@@ -1,10 +1,25 @@
+.navigation {
+  width: 100%;
+}
+.nav-items {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 25px;
+  text-align: center;
+}
 .nav-link {
   display: inline-block;
-  text-decoration: none;
+  margin-left: 20px;
   padding: 12px;
+  text-decoration: none;
   font-weight: 500;
-  color: var(--dark-blue);
-  font-size: 18px;
+  font-size: 25px;
+  color: var(--white);
+  transition: all 250ms var(--cubic);
+}
+.nav-link:hover {
+  color: var(--red);
 }
 .nav-link-active {
   color: var(--light-blue);

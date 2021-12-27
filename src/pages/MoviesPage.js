@@ -1,16 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import SearchForm from '../components/SearchForm';
 import * as API from '../services/moviesApi';
-import { PREV, NEXT } from '../helpers/constants';
+import { PREV, NEXT, MOVIES } from '../helpers/constants';
+import Preloader from '../components/Preloader';
+import Button from '../components/Button';
+import scrollToTop from '../helpers/scrollToTop';
+const MoviesList = lazy(() =>
+  import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
+);
 export default function MoviesPage() {
+  const history = useHistory();
+  const location = useLocation();
+  const searchURL = new URLSearchParams(location.search).get('query') ?? '';
+  const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(currentPage);
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(0);
-  const { url } = useRouteMatch();
+  const [hasMore, setHasMore] = useState(false);
   const isFirstRender = useRef(true);
-  console.log('MoviesPage__url: ', url);
+  console.log(movies);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -19,41 +29,60 @@ export default function MoviesPage() {
     API.fetchMoviesBySearch(page, query).then(data => {
       setMovies(data.results);
       setTotalPages(data.total_pages);
+      setHasMore(data.results.length > 0);
     });
   }, [page, query]);
-  const handleButtonClick = event => {
-    if (event.currentTarget.name === PREV && page > 1)
+  useEffect(() => {
+    if (searchURL === '') return;
+    setQuery(searchURL);
+  }, [searchURL]);
+  const handleButtonClick = (event, value) => {
+    const { name } = event.currentTarget;
+    if (name === PREV && page > 1) {
       setPage(state => state - 1);
-    if (event.currentTarget.name === NEXT && page !== totalPages)
+    }
+    if (name === NEXT && page !== totalPages) {
       setPage(state => state + 1);
+    }
+    location.state = { page: value };
+    scrollToTop();
+  };
+  const pushToHistory = query => {
+    history.push({ ...location, search: `query=${query}` });
   };
   const handleFormSubmit = input => {
     if (query === input) return;
     setQuery(input);
+    pushToHistory(input);
   };
+  console.log(hasMore);
   return (
     <div>
       <SearchForm onSubmit={handleFormSubmit} />
-      <ul>
-        {movies.map(movie => {
-          const movieName = movie.title ? movie.title : movie.name;
-          return (
-            <li key={movie.id}>
-              <Link to={`${url}/${movie.id}`}>{movieName}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      {movies.length > 1 && (
-        <>
-          <button type="button" name={PREV} onClick={handleButtonClick}>
-            Previos
-          </button>
-          <button type="button" name={NEXT} onClick={handleButtonClick}>
-            Next
-          </button>
-        </>
-      )}
+      <Suspense fallback={<Preloader />}>
+        <MoviesList movies={movies} url={`${MOVIES}/`} />
+        {movies.length > 1 && (
+          <div className="ButtonWrapper">
+            <Button
+              type="button"
+              name={PREV}
+              handleClick={handleButtonClick}
+              className="Button"
+              content="Previous"
+              disabled={!hasMore}
+            />
+
+            <Button
+              type="button"
+              name={NEXT}
+              handleClick={handleButtonClick}
+              className="Button"
+              content="Next"
+              disabled={!hasMore}
+            />
+          </div>
+        )}
+      </Suspense>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import * as API from '../services/moviesApi';
+import MoviesList from '../components/MoviesList';
 import { PREV, NEXT } from '../helpers/constants';
 export default function HomePage() {
   const { url } = useRouteMatch();
@@ -35,17 +36,8 @@ export default function HomePage() {
   };
   return (
     <div>
-      <ul>
-        {movies.map(movie => {
-          const movieName = movie.title ? movie.title : movie.name;
-          return (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movieName}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      <>
+      <MoviesList movies={movies} url="" />
+      <div className="ButtonWrapper">
         <button
           type="button"
           name={PREV}
@@ -62,7 +54,7 @@ export default function HomePage() {
         >
           Next
         </button>
-      </>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,59 @@
 .movie-link {
-  display: inline-block;
-  text-decoration: none;
+  display: block;
+  max-width: 100%;
   padding: 10px;
+  /* display: inline-block; */
+  text-decoration: none;
   font-weight: 500;
-  color: var(--dark-blue);
   font-size: 18px;
+  color: var(--dark-blue);
+  transition: all 250ms var(--cubic);
+}
+.movie-link:hover {
+  color: var(--red);
 }
 .movie-link-active {
   color: var(--light-blue);
+}
+.details-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-box {
+  display: flex-start;
+  /* display: inline-flex; */
+  justify-content: flex-start;
+  /* margin-left: 25px; */
+  margin-bottom: 5px;
+  width: 100%;
+}
+.go-back {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--big);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  background-image: linear-gradient(
+    to right,
+    var(--gradient-start-color) 0%,
+    var(--gradient-middle-color) 51%,
+    var(--gradient-end-color) 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px var(--search-button-full-shadow);
+  transition: 0.5s;
+}
+.go-back:hover {
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    var(--gradient-start-hover-color) 0%,
+    var(--gradient-middle-hover-color) 51%,
+    var(--gradient-end-hover-color) 100%
+  );
+  transform: scale(1.1);
 }

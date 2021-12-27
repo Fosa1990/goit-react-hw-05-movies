@@ -1,5 +1,8 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 :root {
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1200px;
   --font: 'Lato', sans-serif;
   --big: 'Montserrat', sans-serif;
   --red: #ef2f3c;
@@ -12,10 +15,16 @@
   --green: #27991a;
   --light: #dae8f8;
   --backdrop: rgba(0, 0, 0, 0.8);
+  --gradient-start-color: #ef9e9e;
+  --gradient-middle-color: #950000;
+  --gradient-end-color: #faffb6;
+  --gradient-start-hover-color: #ee8860;
+  --gradient-middle-hover-color: #a10000;
+  --gradient-end-hover-color: #56ad9f;
   --casts-background: rgba(206, 204, 204, 0.63);
   --card-full-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-
+  --search-button-full-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 html {
@@ -44,35 +53,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-.Button {
-  display: inline-block;
-  margin: 10px;
-  padding: 8px 8px;
-  border: 0;
-  border-radius: 4px;
-  color: var(--white);
-  background-color: var(--light-purple);
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: var(--big);
-  font-size: 20px;
-  line-height: 24px;
-  font-style: normal;
-  font-weight: 500;
-  min-width: 180px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  transition: all 250ms var(--cubic);
-}
-.Button:hover,
-.Button:focus {
-  background-color: var(--dark-purple);
-  transform: scale(1.2);
-}
-.Button:focus,
-.Button:active {
-  outline: none;
-  transform: scale(1.1);
 }

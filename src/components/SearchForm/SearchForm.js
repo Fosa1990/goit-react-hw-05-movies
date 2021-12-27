@@ -1,25 +1,51 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { warningOptions } from '../../helpers/toastyOptions';
+import 'react-toastify/dist/ReactToastify.css';
 import './SearchForm.css';
 export default function SearchForm({ onSubmit }) {
   const [query, setQuery] = useState('');
   const handleFormInput = event => setQuery(event.target.value);
   const onFormSubmit = event => {
     event.preventDefault();
+    if (!query) {
+      toast.warning('Input some text!', warningOptions);
+      return;
+    }
     onSubmit(query);
     setQuery('');
   };
   return (
-    <form onSubmit={onFormSubmit} className="search-form">
-      <input
-        type="text"
-        value={query}
-        name="form-input"
-        onChange={handleFormInput}
-        className="form-input"
+    <>
+      <form onSubmit={onFormSubmit} className="search-form">
+        <input
+          type="text"
+          value={query}
+          name="form-input"
+          onChange={handleFormInput}
+          className="form-input"
+        />
+        <ToastContainer />
+        <button type="submit" className="form-button">
+          Search
+        </button>
+      </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        draggable
+        draggablePercent={60}
       />
-      <button type="submit" className="Button">
-        Search
-      </button>
-    </form>
+    </>
   );
 }
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -13,12 +13,12 @@
   margin-top: 20px;
   margin-left: 20px;
   width: 300px;
+  font-family: var(--font);
+  color: var(--white);
   border: 1px solid black;
   border-radius: 3px;
+  background-color: var(--backdrop);
   box-shadow: var(--card-full-box-shadow);
-}
-.cast .actor:nth-of-type(2n) {
-  background-color: var(--casts-background);
 }
 .actor .image-container {
   height: auto;
@@ -29,13 +29,14 @@
   height: 260px;
   object-fit: cover;
 }
-.actor h3 {
+.actor .actor-title {
   text-align: center;
   display: block;
   width: 100%;
   margin: 3px;
+  color: var(--red);
 }
-.actor span {
+.actor .actor-role {
   display: block;
   text-align: center;
   width: 100%;

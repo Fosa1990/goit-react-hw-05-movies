@@ -1,9 +1,9 @@
-import './MovieItem.css';
+import { PropTypes } from 'prop-types';
 import { BASE_SRC } from '../../helpers/constants';
 import imageNotFound from '../../images/No-Image-Placeholder.svg';
+import './MovieItem.css';
 
 export default function MovieItem({ movie }) {
-  console.log('MovieItem__movie: ', movie);
   const { poster_path, title, vote_average, overview, genres } = movie;
   const date = getMovieDate(movie);
   function getMovieDate(movie) {
@@ -13,18 +13,18 @@ export default function MovieItem({ movie }) {
     return data;
   }
   return (
-    <div className="movie-box">
-      <div className="image-box">
+    <div className="movie-item-wrapper">
+      <div className="movie-item-image-wrapper">
         <img
           src={poster_path ? BASE_SRC + poster_path : imageNotFound}
           alt={title}
-          className="box-image"
+          className="movie-item-image"
           loading="lazy"
         />
       </div>
       <ul className="description">
         <li>
-          <h2>
+          <h2 className="movie-item-title">
             {title} ({date})
           </h2>
         </li>
@@ -33,7 +33,7 @@ export default function MovieItem({ movie }) {
         </li>
         <li>
           <h3>Overview :</h3>
-          <p>{overview}</p>
+          <p className="overview">{overview}</p>
         </li>
         <li>
           <h3>Genres :</h3>
@@ -47,3 +47,12 @@ export default function MovieItem({ movie }) {
     </div>
   );
 }
+MovieItem.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }),
+};
