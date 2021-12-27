@@ -1,1 +1,1 @@
-export { default } from './Reviews.js';
+export { default } from './ReviewsList';

@@ -70,7 +70,6 @@ export default function MoviesPage() {
               content="Previous"
               disabled={!hasMore}
             />
-
             <Button
               type="button"
               name={NEXT}

@@ -1,12 +1,8 @@
 .movie-item-wrapper {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 10px;
-}
-@media screen and (max-width: 649px) {
-  .movie-item-wrapper {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 }
 .movie-item-image-wrapper {
   position: relative;
@@ -36,5 +32,5 @@
   font-family: var(--big);
   text-align: justify;
   text-indent: 20px;
-  padding: 0 20px;
+  padding: 0 25px;
 }

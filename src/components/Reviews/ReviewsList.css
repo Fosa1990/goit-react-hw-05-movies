@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 20px 0;
   width: 100%;
   box-sizing: border-box;
   border-top: 1px solid var(--dark-purple);
@@ -16,7 +17,7 @@
   background-color: var(--white);
 }
 .reviews .no-info {
-  margin: 20px auto;
+  margin: 0 auto;
   color: var(--red);
 }
 .content {

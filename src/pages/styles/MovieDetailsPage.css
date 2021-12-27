@@ -1,8 +1,7 @@
 .movie-link {
   display: block;
   max-width: 100%;
-  padding: 10px;
-  /* display: inline-block; */
+  padding: 10px 20px;
   text-decoration: none;
   font-weight: 500;
   font-size: 18px;
@@ -19,12 +18,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 20px;
 }
 .button-box {
   display: flex-start;
-  /* display: inline-flex; */
   justify-content: flex-start;
-  /* margin-left: 25px; */
   margin-bottom: 5px;
   width: 100%;
 }

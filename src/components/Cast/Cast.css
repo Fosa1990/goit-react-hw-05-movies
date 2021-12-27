@@ -1,10 +1,11 @@
 .cast {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin-top: -20px;
   margin-left: -20px;
+  padding: 20px 0;
 }
 .cast .actor {
   display: flex;
@@ -43,6 +44,6 @@
   margin: 3px;
 }
 .cast .no-info {
-  margin: 20px auto;
+  margin: 0 auto;
   color: var(--red);
 }

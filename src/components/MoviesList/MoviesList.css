@@ -45,7 +45,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  background-color: black;
+  background-color: var(--white);
 }
 .movie-link .movie-image-wrapper {
   position: relative;
@@ -53,17 +53,19 @@
   width: 100%;
 }
 .movie-image-wrapper .movie-image {
-  width: 400px;
-  height: auto;
+  margin: 20px auto 0;
+  width: 360px;
+  height: 540px;
   object-fit: cover;
-}
-.movie-item:hover .movie-name {
-  color: var(--red);
+  border-radius: 10px;
 }
 .movie-name {
   margin: 0;
   padding: 10px 20px;
   font-weight: 500;
   font-size: 20px;
-  color: var(--white);
+  color: var(--dark);
+}
+.movie-item:hover .movie-name {
+  color: var(--red);
 }
