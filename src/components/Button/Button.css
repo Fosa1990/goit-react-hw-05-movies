@@ -6,28 +6,43 @@
 .Button {
   display: inline-block;
   margin: 10px;
-  padding: 8px 8px;
-  border: 0;
-  border-radius: 4px;
-  color: var(--white);
-  background-color: var(--light-purple);
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
+  padding: 10px 20px;
+  min-width: 180px;
   font-family: var(--big);
   font-size: 20px;
-  line-height: 24px;
-  font-style: normal;
   font-weight: 500;
-  min-width: 180px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  font-style: normal;
+  line-height: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--white);
+  background-image: linear-gradient(
+    to right,
+    var(--gradient-start-color) 0%,
+    var(--gradient-middle-color) 51%,
+    var(--gradient-end-color) 100%
+  );
+  background-size: 200% auto;
+  border-radius: 10px;
+  box-shadow: var(--search-button-full-shadow);
+  cursor: pointer;
   transition: all 250ms var(--cubic);
 }
 .Button:hover,
 .Button:focus {
-  background-color: var(--dark-purple);
-  transform: scale(1.2);
+  background-color: var(--light-blue);
+  border-radius: 3px;
+  outline: none;
+  color: var(--white);
+  transform: scale(1.1);
+  background-image: linear-gradient(
+    to right,
+    var(--gradient-start-hover-color) 0%,
+    var(--gradient-middle-hover-color) 51%,
+    var(--gradient-end-hover-color) 100%
+  );
 }
 .Button:focus,
 .Button:active {
@@ -36,13 +51,12 @@
 }
 .Button:disabled {
   cursor: not-allowed;
-  color: var(--red);
+  color: var(--white);
   background-color: var(--white);
-  border: 1px solid var(--red);
+  border: 1px solid var(--white);
+  opacity: 0.5;
+  transform: scale(1);
 }
 .Button:disabled:hover {
-  cursor: not-allowed;
-  color: var(--red);
-  background-color: var(--white);
   border: 1px solid var(--red);
 }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Button from '../Button';
 import { ToastContainer, toast } from 'react-toastify';
 import { warningOptions } from '../../helpers/toastyOptions';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,9 +28,13 @@ export default function SearchForm({ onSubmit }) {
           className="form-input"
         />
         <ToastContainer />
-        <button type="submit" className="form-button">
-          Search
-        </button>
+        <Button
+          type="submit"
+          name="searchButton"
+          content="Search"
+          disabled={false}
+          className="Button"
+        />
       </form>
       <ToastContainer
         position="top-right"

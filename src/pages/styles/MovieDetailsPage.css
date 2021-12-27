@@ -26,32 +26,3 @@
   margin-bottom: 5px;
   width: 100%;
 }
-.go-back {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: var(--big);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--white);
-  background-image: linear-gradient(
-    to right,
-    var(--gradient-start-color) 0%,
-    var(--gradient-middle-color) 51%,
-    var(--gradient-end-color) 100%
-  );
-  background-size: 200% auto;
-  box-shadow: 0 0 20px var(--search-button-full-shadow);
-  transition: 0.5s;
-}
-.go-back:hover {
-  cursor: pointer;
-  background-image: linear-gradient(
-    to right,
-    var(--gradient-start-hover-color) 0%,
-    var(--gradient-middle-hover-color) 51%,
-    var(--gradient-end-hover-color) 100%
-  );
-  transform: scale(1.1);
-}

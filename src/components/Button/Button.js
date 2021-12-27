@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import './Button.css';
-export default function Button({ content, name, type, handleClick, disabled }) {
+export default function Button({ content, name, type, onClick, disabled }) {
   return (
     <button
       type={type}
       name={name}
-      onClick={handleClick}
+      onClick={onClick}
       disabled={disabled}
       className="Button"
     >
@@ -15,13 +15,12 @@ export default function Button({ content, name, type, handleClick, disabled }) {
 }
 Button.defaultProps = {
   type: 'button',
-  handleClick: () => null,
-  disabled: false,
+  onClick: () => null,
 };
 Button.propTypes = {
   content: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 };

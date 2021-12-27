@@ -8,9 +8,10 @@ import {
   useHistory,
 } from 'react-router-dom';
 import * as API from '../services/moviesApi';
-import MovieItem from '../components/MovieItem';
 import { MOVIES, CAST, REVIEWS } from '../helpers/constants';
+import MovieItem from '../components/MovieItem';
 import Spinner from '../components/Spinner';
+import Button from '../components/Button';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './styles/MovieDetailsPage.css';
 const CastView = lazy(() =>
@@ -47,9 +48,14 @@ export default function MovieDetailsPage() {
       {movie && (
         <>
           <div className="button-box">
-            <button type="button" onClick={goBack} className="go-back">
-              Back
-            </button>
+            <Button
+              name="goBack"
+              type="button"
+              onClick={goBack}
+              content="Back"
+              className="Button"
+              disabled={false}
+            />
           </div>
           <MovieItem movie={movie} />
         </>

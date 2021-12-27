@@ -18,7 +18,6 @@ export default function MoviesPage() {
   const [page, setPage] = useState(currentPage);
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) {
@@ -28,7 +27,6 @@ export default function MoviesPage() {
     API.fetchMoviesBySearch(page, query).then(data => {
       setMovies(data.results);
       setTotalPages(data.total_pages);
-      setHasMore(data.results.length > 0);
     });
   }, [page, query]);
   useEffect(() => {
@@ -54,7 +52,6 @@ export default function MoviesPage() {
     setQuery(input);
     pushToHistory(input);
   };
-  console.log(hasMore);
   return (
     <div>
       <SearchForm onSubmit={handleFormSubmit} />
@@ -65,18 +62,18 @@ export default function MoviesPage() {
             <Button
               type="button"
               name={PREV}
-              handleClick={handleButtonClick}
+              onClick={handleButtonClick}
               className="Button"
               content="Previous"
-              disabled={!hasMore}
+              disabled={!(page > 1)}
             />
             <Button
               type="button"
               name={NEXT}
-              handleClick={handleButtonClick}
+              onClick={handleButtonClick}
               className="Button"
               content="Next"
-              disabled={!hasMore}
+              disabled={!(page !== totalPages)}
             />
           </div>
         )}
