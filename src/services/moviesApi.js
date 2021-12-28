@@ -2,10 +2,16 @@ import axios from 'axios';
 export const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f6f92051b45422d9426f457ad6610127';
 async function fetchWithErrorhandling(url = '', config = {}) {
+  if (config.hasQuery) {
+    const response = await axios.get(url, config);
+    return response.status === 200 && response.data.results.length !== 0
+      ? response.data
+      : Promise.reject(new Error(console.log('Not found by query')));
+  }
   const response = await axios.get(url, config);
   return response.status === 200
     ? response.data
-    : Promise.reject(new Error('Not found'));
+    : Promise.reject(new Error(console.log('Not found')));
 }
 export function fetchTrendingMovies() {
   return fetchWithErrorhandling(
@@ -20,6 +26,7 @@ export function fetchTrendingMoviesByPage(page) {
 export function fetchMoviesBySearch(page, query) {
   return fetchWithErrorhandling(
     `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=${page}&include_adult=false`,
+    { hasQuery: true },
   );
 }
 export function fetchMovieDetails(id) {

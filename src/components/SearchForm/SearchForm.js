@@ -21,13 +21,15 @@ export default function SearchForm({ onSubmit }) {
     <>
       <form onSubmit={onFormSubmit} className="search-form">
         <input
-          type="text"
-          value={query}
           name="form-input"
+          value={query}
           onChange={handleFormInput}
+          type="text"
           className="form-input"
+          placeholder="What are we looking for?"
+          autoComplete="on"
+          autoFocus
         />
-        <ToastContainer />
         <Button
           type="submit"
           name="searchButton"

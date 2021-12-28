@@ -29,7 +29,9 @@ export default function MovieDetailsPage() {
   const history = useHistory();
   const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
-    API.fetchMovieDetails(movieId).then(setMovie);
+    API.fetchMovieDetails(movieId)
+      .then(setMovie)
+      .catch(error => console.log('error on catch MovieDetailsPage: ', error));
     return () => setMovie(null);
   }, [movieId]);
   function goBack() {
@@ -46,37 +48,37 @@ export default function MovieDetailsPage() {
   }
   return (
     <>
+      <div className="button-box">
+        <Button
+          name="goBack"
+          type="button"
+          onClick={goBack}
+          content="Back"
+          className="Button"
+          disabled={false}
+        />
+      </div>
       {movie && (
         <>
-          <div className="button-box">
-            <Button
-              name="goBack"
-              type="button"
-              onClick={goBack}
-              content="Back"
-              className="Button"
-              disabled={false}
-            />
-          </div>
           <MovieItem movie={movie} />
+          <div className="details-box">
+            <NavLink
+              to={`${url}/${CAST}`}
+              className="movie-link"
+              activeClassName="movie-link-active"
+            >
+              Cast
+            </NavLink>
+            <NavLink
+              to={`${url}/${REVIEWS}`}
+              className="movie-link"
+              activeClassName="movie-link-active"
+            >
+              Reviews
+            </NavLink>
+          </div>
         </>
       )}
-      <div className="details-box">
-        <NavLink
-          to={`${url}/${CAST}`}
-          className="movie-link"
-          activeClassName="movie-link-active"
-        >
-          Cast
-        </NavLink>
-        <NavLink
-          to={`${url}/${REVIEWS}`}
-          className="movie-link"
-          activeClassName="movie-link-active"
-        >
-          Reviews
-        </NavLink>
-      </div>
       <Suspense fallback={<Spinner />}>
         <Route exact path={`${path}/${CAST}`}>
           <CastView />

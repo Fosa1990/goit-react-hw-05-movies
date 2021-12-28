@@ -4,6 +4,9 @@ import SearchForm from '../components/SearchForm';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
 import Preloader from '../components/Preloader';
+import { errorOptions, infoOptions } from '../helpers/toastyOptions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
 );
@@ -27,10 +30,21 @@ export default function MoviesPage() {
       isFirstRender.current = false;
       return;
     }
-    API.fetchMoviesBySearch(page, query).then(data => {
-      setMovies(data.results);
-      setTotalPages(data.total_pages);
-    });
+    API.fetchMoviesBySearch(page, query)
+      .then(data => {
+        const { results, total_pages } = data;
+        if (!results) {
+          toast.error('No such results!', errorOptions);
+          return;
+        }
+        if (results.length > 1) toast.info('Enjoy!', infoOptions);
+        setMovies(results);
+        setTotalPages(total_pages);
+      })
+      .catch(error => {
+        toast.error(`No images by "${query}"!`, errorOptions);
+        console.log('error on catch: ', error);
+      });
   }, [page, query]);
   useEffect(() => {
     if (searchURL === '') return;
@@ -71,6 +85,18 @@ export default function MoviesPage() {
           />
         )}
       </Suspense>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        draggable
+        draggablePercent={60}
+      />
     </div>
   );
 }

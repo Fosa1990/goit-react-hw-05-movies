@@ -3,6 +3,9 @@ import { useHistory, useLocation } from 'react-router-dom';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
 import Preloader from '../components/Preloader';
+import { errorOptions } from '../helpers/toastyOptions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
 );
@@ -19,10 +22,20 @@ export default function HomePage() {
   const [page, setPage] = useState(currentPage);
   const [totalPages, setTotalPages] = useState(0);
   useEffect(() => {
-    API.fetchTrendingMoviesByPage(page).then(data => {
-      setMovies(data.results);
-      setTotalPages(data.total_pages);
-    });
+    API.fetchTrendingMoviesByPage(page)
+      .then(data => {
+        const { results, total_pages } = data;
+        if (!results) {
+          toast.error('No such results!', errorOptions);
+          return;
+        }
+        setMovies(results);
+        setTotalPages(total_pages);
+      })
+      .catch(error => {
+        toast.error('No images', errorOptions);
+        console.log('error on catch: ', error);
+      });
   }, [page]);
   const pushToHistory = value => {
     history.push({ ...location, search: `page=${value}` });
@@ -50,6 +63,18 @@ export default function HomePage() {
           />
         )}
       </Suspense>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        draggable
+        draggablePercent={60}
+      />
     </div>
   );
 }

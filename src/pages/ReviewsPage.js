@@ -7,7 +7,9 @@ export default function ReviewsPage() {
   const { slug } = useParams();
   const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
-    API.fetchMovieReviews(movieId).then(data => setReviews(data.results));
+    API.fetchMovieReviews(movieId)
+      .then(data => setReviews(data.results))
+      .catch(error => console.log('error on catch ReviewsPage: ', error));
     return () => setReviews([]);
   }, [movieId]);
   return <Reviews reviews={reviews} />;

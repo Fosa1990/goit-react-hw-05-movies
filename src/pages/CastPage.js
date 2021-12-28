@@ -7,10 +7,12 @@ export default function CastPage() {
   const { slug } = useParams();
   const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
-    API.fetchMovieCredits(movieId).then(data => {
-      const filtredData = data.cast.filter(actor => actor.popularity > 4);
-      setCast(filtredData);
-    });
+    API.fetchMovieCredits(movieId)
+      .then(data => {
+        const filtredData = data.cast.filter(actor => actor.popularity > 4);
+        setCast(filtredData);
+      })
+      .catch(error => console.log('error on catch CastPage: ', error));
     return () => setCast([]);
   }, [movieId]);
   return <Cast cast={cast} />;
