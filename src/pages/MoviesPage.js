@@ -45,11 +45,11 @@ export default function MoviesPage() {
   const handleButtonClick = event => {
     const { name } = event.currentTarget;
     if (name === PREV && page > 1) {
-      setPage(state => state - 1);
+      setPage(state => Number(state) - 1);
       pushToHistory(query, Number(page) - 1);
     }
     if (name === NEXT && page !== totalPages) {
-      setPage(state => state + 1);
+      setPage(state => Number(state) + 1);
       pushToHistory(query, Number(page) + 1);
     }
   };

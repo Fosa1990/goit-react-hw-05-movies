@@ -10,7 +10,7 @@ export default function HandlePageSwitch({ onClick, page, totalPages }) {
         onClick={onClick}
         className="Button"
         content="Previous"
-        disabled={!(Number(page) > 1)}
+        disabled={!(page > 1)}
       />
       <Button
         type="button"
@@ -18,7 +18,7 @@ export default function HandlePageSwitch({ onClick, page, totalPages }) {
         onClick={onClick}
         className="Button"
         content="Next"
-        disabled={!(Number(page) !== totalPages)}
+        disabled={!(page !== totalPages)}
       />
     </div>
   );
