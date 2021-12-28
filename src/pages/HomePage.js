@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, useRef } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
@@ -17,17 +17,6 @@ export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const isFirstRender = useRef(true);
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    API.fetchTrendingMovies().then(data => {
-      setMovies(data.results);
-      setTotalPages(data.total_pages);
-    });
-  }, [totalPages]);
   useEffect(() => {
     API.fetchTrendingMoviesByPage(page).then(data => {
       setMovies(data.results);
