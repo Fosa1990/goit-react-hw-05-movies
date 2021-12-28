@@ -4,10 +4,14 @@ import SearchForm from '../components/SearchForm';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
 import Preloader from '../components/Preloader';
-import Button from '../components/Button';
 import scrollToTop from '../helpers/scrollToTop';
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
+);
+const HandlePageSwitch = lazy(() =>
+  import(
+    '../components/HandlePageSwitch' /* webpackChunkName: "Handle-page-switch"*/
+  ),
 );
 export default function MoviesPage() {
   const history = useHistory();
@@ -58,24 +62,11 @@ export default function MoviesPage() {
       <Suspense fallback={<Preloader />}>
         <MoviesList movies={movies} url={`${MOVIES}/`} />
         {movies.length > 1 && (
-          <div className="ButtonWrapper">
-            <Button
-              type="button"
-              name={PREV}
-              onClick={handleButtonClick}
-              className="Button"
-              content="Previous"
-              disabled={!(page > 1)}
-            />
-            <Button
-              type="button"
-              name={NEXT}
-              onClick={handleButtonClick}
-              className="Button"
-              content="Next"
-              disabled={!(page !== totalPages)}
-            />
-          </div>
+          <HandlePageSwitch
+            onClick={handleButtonClick}
+            page={page}
+            totalPages={totalPages}
+          />
         )}
       </Suspense>
     </div>

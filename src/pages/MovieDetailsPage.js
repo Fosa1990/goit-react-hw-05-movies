@@ -27,10 +27,12 @@ export default function MovieDetailsPage() {
   const location = useLocation();
   const refLocation = useRef(location);
   const history = useHistory();
+
   useEffect(() => {
     API.fetchMovieDetails(movieId).then(setMovie);
     return () => setMovie(null);
   }, [movieId]);
+
   function goBack() {
     // window.history.back();
     if (refLocation.current.state) {
@@ -43,6 +45,7 @@ export default function MovieDetailsPage() {
       history.push(path);
     }
   }
+
   return (
     <>
       {movie && (

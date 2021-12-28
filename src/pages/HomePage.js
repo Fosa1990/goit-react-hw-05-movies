@@ -3,10 +3,14 @@ import { useLocation } from 'react-router-dom';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
 import Preloader from '../components/Preloader';
-import Button from '../components/Button';
 import scrollToTop from '../helpers/scrollToTop';
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
+);
+const HandlePageSwitch = lazy(() =>
+  import(
+    '../components/HandlePageSwitch' /* webpackChunkName: "Handle-page-switch"*/
+  ),
 );
 export default function HomePage() {
   const location = useLocation();
@@ -45,24 +49,13 @@ export default function HomePage() {
     <div>
       <Suspense fallback={<Preloader />}>
         <MoviesList movies={movies} url={`${MOVIES}/`} />
-        <div className="ButtonWrapper">
-          <Button
-            type="button"
-            name={PREV}
-            handleClick={handleButtonClick}
-            className="Button"
-            content="Previous"
-            disabled={false}
+        {movies.length > 1 && (
+          <HandlePageSwitch
+            onClick={handleButtonClick}
+            page={page}
+            totalPages={totalPages}
           />
-          <Button
-            type="button"
-            name={NEXT}
-            handleClick={handleButtonClick}
-            className="Button"
-            content="Next"
-            disabled={false}
-          />
-        </div>
+        )}
       </Suspense>
     </div>
   );
