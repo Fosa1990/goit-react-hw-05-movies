@@ -25,27 +25,24 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const { url, path } = useRouteMatch();
   const location = useLocation();
-  const refLocation = useRef(location);
+  const locationRef = useRef(location);
   const history = useHistory();
-
   useEffect(() => {
     API.fetchMovieDetails(movieId).then(setMovie);
     return () => setMovie(null);
   }, [movieId]);
-
   function goBack() {
     // window.history.back();
-    if (refLocation.current.state) {
-      const { pathname, search } = refLocation.current.state.from;
+    if (locationRef.current.state) {
+      const { pathname, search } = locationRef.current.state.from;
       history.push(search ? pathname + search : pathname);
     } else {
-      const path = refLocation.current.pathname.includes(MOVIES)
+      const path = locationRef.current.pathname.includes(MOVIES)
         ? `/${MOVIES}`
         : '/';
       history.push(path);
     }
   }
-
   return (
     <>
       {movie && (

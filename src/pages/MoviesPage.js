@@ -36,23 +36,27 @@ export default function MoviesPage() {
     if (searchURL === '') return;
     setQuery(searchURL);
   }, [searchURL]);
+  const pushToHistory = (query, value) => {
+    history.push({
+      ...location,
+      search: `query=${query}&page=${value}`,
+    });
+  };
   const handleButtonClick = event => {
     const { name } = event.currentTarget;
     if (name === PREV && page > 1) {
       setPage(state => state - 1);
+      pushToHistory(query, Number(page) - 1);
     }
     if (name === NEXT && page !== totalPages) {
       setPage(state => state + 1);
+      pushToHistory(query, Number(page) + 1);
     }
-    location.state = { page };
-  };
-  const pushToHistory = query => {
-    history.push({ ...location, search: `query=${query}` });
   };
   const handleFormSubmit = input => {
     if (query === input) return;
     setQuery(input);
-    pushToHistory(input);
+    pushToHistory(input, page);
   };
   return (
     <div>
