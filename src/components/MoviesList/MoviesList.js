@@ -9,8 +9,8 @@ export default function MoviesList({ movies, url }) {
     <ul className="movies">
       {movies.map(movie => {
         let movieName = movie.title ? movie.title : movie.name;
-        if (movieName.length > 35) {
-          movieName = movieName.slice(0, 35) + '...';
+        if (movieName.length > 60) {
+          movieName = movieName.slice(0, 60) + '...';
         }
         const imageUrl = movie.poster_path
           ? `${BASE_SRC}` + movie.poster_path
