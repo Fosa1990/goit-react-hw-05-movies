@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from 'react';
 import Container from './components/Container';
 import Appbar from './components/Appbar';
 import Preloader from './components/Preloader';
-import { MOVIES } from './helpers/constants';
+import { MOVIES, SLUG } from './helpers/constants';
 const HomePage = lazy(() =>
   import('./pages/HomePage' /* webpackChunkName: "Home-page" */),
 );
@@ -28,10 +28,10 @@ export default function App() {
             <Route exact path={`/${MOVIES}`}>
               <MoviesPage />
             </Route>
-            <Route path={`/${MOVIES}/:movieId`}>
+            <Route path={`/${MOVIES}/:${SLUG}`}>
               <MovieDetailsPage />
             </Route>
-            <Route path="/:movieId">
+            <Route path={`/:${SLUG}`}>
               <MovieDetailsPage />
             </Route>
             <Redirect to="/" />

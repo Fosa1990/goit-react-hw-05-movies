@@ -22,11 +22,12 @@ const Reviews = lazy(() =>
 );
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
-  const { movieId } = useParams();
+  const { slug } = useParams();
   const { url, path } = useRouteMatch();
   const location = useLocation();
   const locationRef = useRef(location);
   const history = useHistory();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
     API.fetchMovieDetails(movieId).then(setMovie);
     return () => setMovie(null);

@@ -4,6 +4,7 @@ export const NEXT = 'next';
 export const MOVIES = 'movies';
 export const CAST = 'cast';
 export const REVIEWS = 'reviews';
+export const SLUG = 'slug';
 export const STATUS = {
   IDLE: 'idle',
   PENDING: 'pending',

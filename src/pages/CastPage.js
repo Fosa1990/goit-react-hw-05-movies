@@ -4,7 +4,8 @@ import * as API from '../services/moviesApi';
 import Cast from '../components/Cast';
 export default function CastPage() {
   const [cast, setCast] = useState([]);
-  const { movieId } = useParams();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
     API.fetchMovieCredits(movieId).then(data => {
       const filtredData = data.cast.filter(actor => actor.popularity > 4);

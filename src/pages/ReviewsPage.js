@@ -4,7 +4,8 @@ import * as API from '../services/moviesApi';
 import Reviews from '../components/Reviews';
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
-  const { movieId } = useParams();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
   useEffect(() => {
     API.fetchMovieReviews(movieId).then(data => setReviews(data.results));
     return () => setReviews([]);

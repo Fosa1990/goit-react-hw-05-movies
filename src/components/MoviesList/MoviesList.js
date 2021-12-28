@@ -1,8 +1,10 @@
 import { PropTypes } from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
+import slugify from 'slugify';
 import { BASE_SRC } from '../../helpers/constants';
 import './MoviesList.css';
 import notFoundImage from '../../images/No-Image-Placeholder.svg';
+const makeSlug = string => slugify(string, { lower: true });
 export default function MoviesList({ movies, url }) {
   const location = useLocation();
   return (
@@ -19,7 +21,7 @@ export default function MoviesList({ movies, url }) {
           <li key={movie.id} className="movie-item">
             <Link
               to={{
-                pathname: `${url}${movie.id}`,
+                pathname: `${url}${makeSlug(`${movieName} ${movie.id}`)}`,
                 state: {
                   from: location,
                 },

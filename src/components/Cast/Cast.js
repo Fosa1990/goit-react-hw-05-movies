@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { BASE_SRC } from '../../helpers/constants';
 import './Cast.css';
-
 export default function Cast({ cast }) {
   return (
     <div className="cast">
