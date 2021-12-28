@@ -12,6 +12,7 @@ import { MOVIES, CAST, REVIEWS } from '../helpers/constants';
 import MovieItem from '../components/MovieItem';
 import Spinner from '../components/Spinner';
 import Button from '../components/Button';
+import NotFound from '../components/NotFound';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './styles/MovieDetailsPage.css';
 const CastView = lazy(() =>
@@ -79,6 +80,7 @@ export default function MovieDetailsPage() {
           </div>
         </>
       )}
+      {!movie && <NotFound text="Sorry, page not found :(" />}
       <Suspense fallback={<Spinner />}>
         <Route exact path={`${path}/${CAST}`}>
           <CastView />

@@ -44,11 +44,11 @@ export default function HomePage() {
     const { name } = event.currentTarget;
     if (name === PREV && page > 1) {
       setPage(state => Number(state) - 1);
-      pushToHistory(page - 1);
+      pushToHistory(Number(page) - 1);
     }
     if (name === NEXT && page !== totalPages) {
       setPage(state => Number(state) + 1);
-      pushToHistory(page + 1);
+      pushToHistory(Number(page) + 1);
     }
   };
   return (
