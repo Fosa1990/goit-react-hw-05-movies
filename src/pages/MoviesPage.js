@@ -4,7 +4,6 @@ import SearchForm from '../components/SearchForm';
 import * as API from '../services/moviesApi';
 import { PREV, NEXT, MOVIES } from '../helpers/constants';
 import Preloader from '../components/Preloader';
-import scrollToTop from '../helpers/scrollToTop';
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
 );
@@ -46,7 +45,6 @@ export default function MoviesPage() {
       setPage(state => state + 1);
     }
     location.state = { page: value };
-    scrollToTop();
   };
   const pushToHistory = query => {
     history.push({ ...location, search: `query=${query}` });
