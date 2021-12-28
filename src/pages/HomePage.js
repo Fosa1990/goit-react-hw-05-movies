@@ -22,7 +22,7 @@ export default function HomePage() {
       setTotalPages(data.total_pages);
     });
   }, [page]);
-  const handleButtonClick = (event, value) => {
+  const handleButtonClick = event => {
     const { name } = event.currentTarget;
     if (name === PREV && page > 1) {
       setPage(state => state - 1);
@@ -30,7 +30,7 @@ export default function HomePage() {
     if (name === NEXT && page !== totalPages) {
       setPage(state => state + 1);
     }
-    location.state = { page: value };
+    location.state = { page };
   };
   return (
     <div>

@@ -6,10 +6,10 @@ export default function MovieItem({ movie }) {
   const { poster_path, title, vote_average, overview, genres } = movie;
   const date = getMovieDate(movie);
   function getMovieDate(movie) {
-    let data;
-    if (movie.release_date) data = movie.release_date.slice(0, 4);
-    if (movie.first_air_date) data = movie.first_air_date.slice(0, 4);
-    return data;
+    let date;
+    if (movie.release_date) date = movie.release_date.slice(0, 4);
+    if (movie.first_air_date) date = movie.first_air_date.slice(0, 4);
+    return date;
   }
   return (
     <div className="movie-item-wrapper">

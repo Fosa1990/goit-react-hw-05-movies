@@ -31,7 +31,7 @@
 }
 @media screen and (min-width: 1200px) {
   .movies .movie-item {
-    flex-basis: calc((100% - 80px) / 3);
+    flex-basis: calc((100% - 80px) / 4);
     max-width: 400px;
   }
 }
