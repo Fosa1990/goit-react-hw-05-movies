@@ -1,0 +1,39 @@
+.Backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--backdrop);
+}
+.Modal {
+  position: relative;
+  display: inline-flex;
+  padding: 12px;
+  min-height: 400px;
+  max-width: calc(100vw - 72px);
+  max-height: calc(100vh - 48px);
+  border-radius: 3px;
+  background-color: var(--white);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  overflow: auto;
+}
+.CloseModal {
+  position: absolute;
+  z-index: 2;
+  top: 1px;
+  right: 1px;
+  padding: 8px;
+  font-size: 0;
+  border-radius: 50%;
+  background-color: var(--white);
+}
+.CloseModal:hover {
+  fill: var(--white);
+  background-color: var(--dark);
+}

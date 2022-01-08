@@ -13,6 +13,7 @@ import MovieItem from '../components/MovieItem';
 import Spinner from '../components/Spinner';
 import Button from '../components/Button';
 import NotFound from '../components/NotFound';
+import Modal from '../components/Modal';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './styles/MovieDetailsPage.css';
 const CastView = lazy(() =>
@@ -21,8 +22,12 @@ const CastView = lazy(() =>
 const Reviews = lazy(() =>
   import('./ReviewsPage' /* webpackChunkName: "reviews-subview"*/),
 );
+const Trailer = lazy(() =>
+  import('../components/Trailer' /* webpackChunkName: "trailer"*/),
+);
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
+  const [modal, setModal] = useState(false);
   const { slug } = useParams();
   const { url, path } = useRouteMatch();
   const location = useLocation();
@@ -47,6 +52,9 @@ export default function MovieDetailsPage() {
       history.push(path);
     }
   }
+  function toggleModal() {
+    setModal(state => !state);
+  }
   return (
     <>
       <div className="button-box">
@@ -58,8 +66,17 @@ export default function MovieDetailsPage() {
           className="Button"
           disabled={false}
         />
+        <Button
+          name="trailer"
+          type="button"
+          data-id={movieId}
+          onClick={toggleModal}
+          content="trailer"
+          className="Button"
+          disabled={false}
+        />
       </div>
-      {movie && (
+      {movie ? (
         <>
           <MovieItem movie={movie} />
           <div className="details-box">
@@ -79,8 +96,16 @@ export default function MovieDetailsPage() {
             </NavLink>
           </div>
         </>
+      ) : (
+        <NotFound text="Sorry, page not found :(" />
       )}
-      {!movie && <NotFound text="Sorry, page not found :(" />}
+      {modal && (
+        <Modal onClose={toggleModal}>
+          <Suspense fallbakc={<Spinner />}>
+            <Trailer id={movieId} />
+          </Suspense>
+        </Modal>
+      )}
       <Suspense fallback={<Spinner />}>
         <Route exact path={`${path}/${CAST}`}>
           <CastView />

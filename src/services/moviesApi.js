@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f6f92051b45422d9426f457ad6610127';
+const API_YOUTUBE_KEY = 'f6f92051b45422d9426f457ad6610127';
 async function fetchWithErrorhandling(url = '', config = {}) {
   if (config.hasQuery) {
     const response = await axios.get(url, config);
@@ -40,5 +41,10 @@ export function fetchMovieCredits(id) {
 export function fetchMovieReviews(id) {
   return fetchWithErrorhandling(
     `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`,
+  );
+}
+export function fetchTrailer({ id }) {
+  return fetchWithErrorhandling(
+    `${BASE_URL}movie/${id}/videos?api_key=${API_YOUTUBE_KEY}&language=en-US`,
   );
 }
