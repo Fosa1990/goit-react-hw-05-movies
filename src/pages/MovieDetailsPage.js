@@ -101,7 +101,7 @@ export default function MovieDetailsPage() {
       )}
       {modal && (
         <Modal onClose={toggleModal}>
-          <Suspense fallbakc={<Spinner />}>
+          <Suspense fallback={<Spinner />}>
             <Trailer id={movieId} />
           </Suspense>
         </Modal>
