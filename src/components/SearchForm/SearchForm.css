@@ -2,10 +2,20 @@
   display: flex;
   justify-content: center;
   padding: 15px;
+
+  @media screen and (max-width: 424px) {
+    flex-wrap: wrap;
+  }
 }
 .search-form .form-input {
   margin-right: 5px;
   padding: 5px;
   width: 60%;
   max-width: 60%;
+
+  @media screen and (max-width: 424px) {
+    margin-right: 0;
+    width: 80%;
+    max-width: 80%;
+  }
 }

@@ -7,7 +7,7 @@
   display: inline-block;
   margin: 10px;
   padding: 10px 20px;
-  min-width: 180px;
+  min-width: 100px;
   font-family: var(--big);
   font-size: 20px;
   font-weight: 500;
